@@ -33,8 +33,8 @@ class CreatePaymentIntentController {
 
         const { products } = request.body
 
-        const amount = calculateOrderAmount(products)
-
+        const amount = Math.round(calculateOrderAmount(products) * 100);
+        
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: "brl",
